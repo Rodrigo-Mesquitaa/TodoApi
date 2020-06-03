@@ -14,6 +14,11 @@ namespace TodoApi.Controllers
     [Route("v1/categories")]
     public class CategoryController : ControllerBase
     {
+        /// <summary>
+        /// Metodo de busca da categoria
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         public async Task<ActionResult<List<Category>>> Get([FromServices] DataContext context)
@@ -21,7 +26,12 @@ namespace TodoApi.Controllers
             var categories = await context.Categories.ToListAsync();
             return categories;
         }
-
+        /// <summary>
+        /// Metoro de inclusão de categoria
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         public async Task<ActionResult<Category>> Post(

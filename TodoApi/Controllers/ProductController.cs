@@ -14,12 +14,22 @@ namespace TodoApi.Controllers
     [Route("v1/products")]
     public class ProductController : ControllerBase
     {
+        /// <summary>
+        /// Metodo de busca de produto
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public async Task<ActionResult<List<Product>>> Get([FromServices] DataContext context)
         {
             var products = await context.Products.Include(x => x.Category).ToListAsync();
             return products;
         }
-
+        /// <summary>
+        /// Metodo de busca por Id de produto
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("id:int")]
 
@@ -28,7 +38,12 @@ namespace TodoApi.Controllers
             var product = await context.Products.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
             return product;
         }
-
+        /// <summary>
+        /// Metodo de busca por categoria de produto
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("categories/{id:int}")]
         public async Task<ActionResult<List<Product>>> GetByCategory([FromServices] DataContext context, int id)
@@ -39,7 +54,12 @@ namespace TodoApi.Controllers
                 .ToListAsync();
             return products;
         }
-
+        /// <summary>
+        /// Metodo de inclusão de produto
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         public async Task<ActionResult<Product>> Post(
