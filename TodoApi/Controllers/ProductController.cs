@@ -11,7 +11,7 @@ namespace TodoApi.Controllers
 {
 
     [ApiController]
-    [Route("v1/products")]
+    [Route("v1/produtos")]
     public class ProductController : ControllerBase
     {
         /// <summary>
